@@ -1,0 +1,61 @@
+<h2>Registro de Saída e Retorno dos Cargueiros</h2>
+
+<div>
+  <label for="cargueiroTipo">Tipo do Cargueiro:</label>
+  <input type="text" id="cargueiroTipo" [(ngModel)]="cargueiroTipo">
+
+  <label for="dataHoraSaida">Data e Hora de Saída:</label>
+  <input type="datetime-local" id="dataHoraSaida" [(ngModel)]="dataHoraSaida">
+
+  <label for="dataHoraRetorno">Data e Hora de Retorno:</label>
+  <input type="datetime-local" id="dataHoraRetorno" [(ngModel)]="dataHoraRetorno">
+
+  <div *ngIf="dataHoraRetorno">
+    <label for="quantidadeMineral">Quantidade de Minerais:</label>
+    <input type="number" id="quantidadeMineral" [(ngModel)]="quantidadeMineral">
+
+    <label for="tipoMineral">Tipo de Minerais:</label>
+    <input type="text" id="tipoMineral" [(ngModel)]="tipoMineral">
+  </div>
+
+  <button (click)="registrarSaidaRetorno()">Registrar</button>
+</div>
+
+<h2>Cargas Recebidas</h2>
+
+<div>
+  <label for="filtroMes">Filtrar por Mês:</label>
+  <input type="number" id="filtroMes" [(ngModel)]="filtroMes">
+
+  <label for="filtroAno">Filtrar por Ano:</label>
+  <input type="number" id="filtroAno" [(ngModel)]="filtroAno">
+
+  <button (click)="getCargasRecebidas()">Filtrar</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+        <th>Tipo de Minério</th>
+        <th>Data e Hora de Recebimento</th>
+        <th>Valor Total da Carga</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let carga of cargasRecebidas">
+        <td>{{ carga.tipoMineral }}</td>
+        <td>{{ carga.dataHoraRecebimento }}</td>
+        <td>{{ carga.valorTotal }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Informações Adicionais</h2>
+
+<div>
+  <h3>Total Gasto por Tipo de Minério</h3>
+</div>
+
+<div>
+  <h3>Índice de Ocupação dos Cargueiros por Classe</h3>
+</div>

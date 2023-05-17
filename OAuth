@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autenticação OAuth</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 100px auto;
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Autenticação OAuth</h2>
+        <button onclick="authorize()">Autenticar com OAuth</button>
+    </div>
+
+    <script>
+        function authorize() {
+            // Credenciais e URLs do provedor OAuth
+
+            var clientId = '';
+            var redirectUri = '';
+            var authorizationEndpoint = '';
+
+            
+            var state = generateRandomString(16);
+
+            
+            var authorizationUrl = authorizationEndpoint + '?client_id=' + encodeURIComponent(clientId) +
+                '&redirect_uri=' + encodeURIComponent(redirectUri) +
+                '&response_type=token&state=' + encodeURIComponent(state);
+
+            
+            window.location.href = authorizationUrl;
+        }
+
+        function generateRandomString(length) {
+            var charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var randomString = '';
+            for (var i = 0; i < length; i++) {
+                var randomIndex = Math.floor(Math.random() * charset.length);
+                randomString += charset.substring(randomIndex, randomIndex + 1);
+            }
+            return randomString;
+        }
+    </script>
+</body>
+</html>
